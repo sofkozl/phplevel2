@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>{{ title }}</title>
+  <link rel="stylesheet" type="text/css" href="/templates/style.css" />
+</head>
+
+<body>
+  <div id="main">
+    <div class="post_title">
+      <h2>{{ title }}</h2>
+    </div>
+    <div class="gallery">
+      {% for photo in photos %}
+        <a rel="gallery" class="photo" href="photo.php?photo={{ photo }}"><img src="{{ photo_small }}/{{ photo }}"></a>
+      {% endfor %}
+    </div>
+  </div>
+
+</body>
+
+</html>
