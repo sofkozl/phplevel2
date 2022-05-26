@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>{{ title }}</title>
+  <link rel="stylesheet" type="text/css" href="/templates/style.css" />
+</head>
+
+<body>
+  <div id="main">
+    <div class="post_title">
+      <a href="/index.php" class="menu">Галерея</a>
+      <a href="/catalog.php" class="menu">Каталог</a>
+      <h2>{{ title }}</h2>
+    </div>
+    <div class="gallery">
+      {% for product in data %}
+      <div class="gallery-card">
+        <h4>{{ product.name }}</h4>
+        <p>{{ product.description }}</p>
+        <h4>{{ product.price }} руб.</h4>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="botton-show"><a class="show-ref" href="?limit={{count + 3}}">Показать еще</a></div>
+  </div>
+
+</body>
+
+</html>
