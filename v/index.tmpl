@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="v/style.css" />
+    <title>{% block title %}{{ title }}{% endblock %}</title>
+  </head>
+  <body>
+
+        {% block header %}
+          <div id="header">
+            {% if user == true %}
+              <a href="index.php?c=user&act=info">Личный кабинет</a> | <a href="index.php?c=user&act=logout">Выйти</a>
+            {% else %}
+              <a href="index.php?c=user&act=auth">Войти</a> | <a href="index.php?c=user&act=register">Регистрация</a>
+            {% endif %}
+		      </div>
+        {% endblock %}
+
+      {% block content %}
+        <div id="content">
+          <main>
+            {% if catalog is defined %}
+              {% for product in catalog %}
+                <a href="index.php?c=catalog&act=product&id={{ product.id_product }}"><img src="{{ product.image }}" alt="{{ product.name }}"></a>
+                <h3>{{ product.name }}</h3>
+                <h4>Цена: {{ product.price }}</h4>
+              {% endfor %}
+            {% endif %}
+          </main>
+        </div>
+      {% endblock %}
+
+      {% block footer %}
+          <div id="footer">
+            Подвал сайта.
+          </div>
+      {% endblock %}
+  </body>
+</html>

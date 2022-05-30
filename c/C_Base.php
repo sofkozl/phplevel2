@@ -1,8 +1,4 @@
 <?php
-//
-// Базовый контроллер сайта.
-//
-// include_once 'm/M_User.php';
 
 abstract class C_Base extends C_Controller
 {
@@ -15,9 +11,6 @@ abstract class C_Base extends C_Controller
 		$this->content = 'Пробный контент';
 	}
 
-	//
-	// Генерация базового шаблонаы
-	//	
 	public function render()
 	{
 		$get_user = new M_User();
@@ -29,10 +22,8 @@ abstract class C_Base extends C_Controller
 
 		$loader = new Twig_Loader_Filesystem('v');
 		$twig = new Twig_Environment($loader);
-		$template = $twig->loadTemplate('main.tmpl');
+		$template = $twig->loadTemplate('index.tmpl');
 		$vars = array(
-			'title' => $this->title,
-			'content' => $this->content,
 			'user' => $user_info['name']
 		);
 		echo $template->render($vars);

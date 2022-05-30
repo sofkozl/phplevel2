@@ -2,7 +2,7 @@
 
 include_once 'config/db.php';
 
-class DB
+class M_PDO
 {
   private static $instance = null;
 
@@ -11,14 +11,14 @@ class DB
   public static function Instance()
   {
     if (self::$instance == null) {
-      self::$instance = new DB();
+      self::$instance = new M_PDO();
     }
     return self::$instance;
   }
 
   private function __construct()
   {
-    $this->db = new PDO(DB_DRIVER . ':host=' . DB_SERVER . ';dbname=' . DB_NAME, DB_USER, DB_PASSWORD);
+    $this->db = new PDO(DB_DRIVER . ':host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASSWORD);
     $this->db->exec('SET NAMES UTF8');
     $this->db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
   }
@@ -49,50 +49,68 @@ class DB
   /*
      * Выполнить запрос с выборкой данных
      */
-  public static function Select($query, $params = array())
+  public function Select($query, $params = array())
   {
-    return self::Query($query, $params)->fetchAll();
+    $res = $this->Query($query, $params);
+    if ($res) {
+      return $res->fetchAll();
+    }
   }
 
   /*
      * Выполнить запрос всех данных
      */
-  public static function SelectAll($query)
+  public function SelectAll($query)
   {
-    return self::Query($query)->fetchAll();
+    $res = $this->Query($query);
+    if ($res) {
+      return $res->fetchAll();
+    }
   }
 
 
   /*
      * Поулчить следующую строку
      */
-  public static function GetRow($query, $params = array())
+  public function GetRow($query, $params = array())
   {
-    return self::Query($query, $params)->fetch();
+    $res = $this->Query($query, $params);
+    if ($res) {
+      return $res->fetch();
+    }
   }
 
   /*
      * Вставить
      */
-  public static function Insert($query, $params = array())
+  public function Insert($query, $params = array())
   {
-    return self::Query($query, $params)->lastInsertId();
+    $res = $this->Query($query, $params);
+    if ($res) {
+      return $res->lastInsertId();
+    }
   }
 
   /*
      * Обновить
      */
-  public static function Update($query, $params = array())
+  public function Update($query, $params = array())
   {
-    return self::Query($query, $params)->rowCount();
+    $res = $this->Query($query, $params);
+    if ($res) {
+      return $res->rowCount();
+    }
   }
 
   /*
      * Удалить
      */
-  public static function Delete($query, $params = array())
+  public function Delete($query, $params = array())
   {
-    return self::Query($query, $params)->rowCount();
+    $res = $this->Query($query, $params);
+    if ($res) {
+      return $res->rowCount();
+    }
   }
 }
 

@@ -12,18 +12,18 @@ class M_User
     public function get($id)
     {
         $query = "SELECT * FROM user WHERE id_user=:id_user";
-        $res = DB::Instance()->Select($query, ['id_user' => $id]);
+        $res = M_PDO::Instance()->Select($query, ['id_user' => $id]);
         return $res;
     }
 
     public function register($name, $login, $password)
     {
         $query = "SELECT * FROM user WHERE user_login=:user_login";
-        $res = DB::Instance()->Select($query, ['user_login' => $login]);
+        $res = M_PDO::Instance()->Select($query, ['user_login' => $login]);
         if (!$res) {
             $pass = $this->hash_pass($login, $password);
             $query = "INSERT INTO user (user_name, user_login, user_password) VALUES (:name, :login, :pass)";
-            $res = DB::Instance()->Insert($query, [
+            $res = M_PDO::Instance()->Insert($query, [
                 'name' => $name,
                 'login' => $login,
                 'pass' => $pass,
@@ -37,7 +37,7 @@ class M_User
     public function auth($login, $password)
     {
         $query = "SELECT * FROM user WHERE user_login=:user_login";
-        $res = DB::Instance()->Select($query, ['user_login' => $login]);
+        $res = M_PDO::Instance()->Select($query, ['user_login' => $login]);
 
         if ($res) {
             if ($res['user_password'] == $this->hash_pass($login, $password)) {

@@ -1,1 +1,6 @@
-Добро пожаловать, {{username}}! Ваш логин - {{userlogin}}!
+{% extends 'index.tmpl' %}
+
+{% block header %}
+  {{ parent() }}
+  Добро пожаловать, {{username}}! Ваш логин - {{userlogin}}!
+{% endblock %}

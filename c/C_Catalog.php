@@ -6,13 +6,15 @@ class C_Catalog extends C_Base
   {
     $this->title .= ' Каталог';
     $get_catalog = new M_Catalog();
-    $this->content = $get_catalog->getProducts();
 
     $loader = new Twig_Loader_Filesystem('v');
     $twig = new Twig_Environment($loader);
-    $template = $twig->loadTemplate('catalog.tmpl');
+    $template = $twig->loadTemplate('index.tmpl');
+    $catalog = $get_catalog->getProducts();
+
     $vars = array(
-      'catalog' => $this->content
+      'Каталог' => $this->title,
+      'catalog' => $catalog
     );
     echo $template->render($vars);
   }

@@ -1,6 +1,6 @@
 <?php
 
-include_once 'autoload.php';
+require_once 'autoload.php';
 
 $action = 'action_';
 $action .= (isset($_GET['act'])) ? $_GET['act'] : 'index';

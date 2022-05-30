@@ -1,19 +1,20 @@
 <?php
 
 include 'Twig/Autoloader.php';
+Twig_Autoloader::register();
 
 spl_autoload_register('myAutoLoad');
 
 function myAutoLoad($classname)
 {
   $dirs = ['c', 'm'];
-  $found = false;
+  // $found = false;
   foreach ($dirs as $dir) {
     $filename = __DIR__ . '/' . $dir . '/' . $classname . '.php';
 
     if (is_file($filename)) {
       require_once($filename);
-      $found = true;
+      // $found = true;
       return true;
     }
   }
