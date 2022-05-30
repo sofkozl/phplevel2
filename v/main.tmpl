@@ -1,0 +1,15 @@
+{% include 'header.tmpl' %}
+
+	<div>
+		{% if user == true %}
+			<a href="index.php?c=user&act=info">Личный кабинет</a> | <a href="index.php?c=user&act=logout">Выйти</a>
+		{% else %}
+			<a href="index.php?c=user&act=auth">Войти</a> | <a href="index.php?c=user&act=register">Регистрация</a>
+		{% endif %}
+	</div>
+
+	<div>
+			{{ content }}
+	</div>
+
+{% include 'footer.tmpl' %}
