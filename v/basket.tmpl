@@ -1,0 +1,29 @@
+{% extends 'index.tmpl' %}
+      
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+
+  {% if products %}
+    {% for product in products %}
+
+    <img src="/v/img/{{ product.image }}" alt="{{ product.image }}">
+    <p>Цена: {{ product.price }} рублей</p>
+    <p>Количество: {{ product.quantity}} шт.</p>
+    <a href="index.php?c=basket&act=delete$id={{ product.id }}">Удалить</a>
+
+    {% endfor%}
+    <p>Итого {{ basket_count }} на сумму {{ basket_sum }} рублей</p>
+
+    {% if user == true %}
+      <a href="index.php?c=basket&act=buy">Оформить заказ</a>
+    {% else %}
+      <a href="index.php?c=user$act=auth">Войти, чтобы сделать заказ</a>
+      <a href="index.php?c=user$act=register">Зарегистрироваться, чтобы сделать заказ</a>
+    {% endif %}
+    
+  {% else %}
+    <p>В корзине нет товаров</p>
+  {% endif %}
+
+{% endblock %}

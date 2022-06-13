@@ -1,0 +1,16 @@
+            <a href="index.php?c=catalog&act=index">Каталог</a> |
+
+            {% if user == true %}
+              <a href="index.php?c=user&act=info">Личный кабинет</a> | <a href="index.php?c=user&act=logout">Выйти&nbsp; {{ user }} </a>
+            {% endif %}
+            {% if user == false %}
+              <a href="index.php?c=user&act=auth">Войти</a> | <a href="index.php?c=user&act=register">Регистрация </a>
+            {% endif %}
+            
+            | <a href="index.php?c=basket&act=index">Корзина&nbsp; <p>
+                  ({% if basket_count %}
+                   {{ basket_count }}
+                  {% else %}
+                    0
+                  {% endif %})
+                </p></a>

@@ -1,0 +1,26 @@
+{% extends 'index.tmpl' %}
+      
+{% block title %}{{ title }}{% endblock %}
+
+      {% block content %}
+
+        <div id="content">
+          <main>
+            {% if catalog is defined %}
+
+              {% for product in catalog %}
+
+                <div id="id_{{ product.id_product }}">
+                  <a href="index.php?c=catalog&act=product&id={{ product.id_product }}"><img src="/v/img/{{ product.image }}" alt="{{ product.name }}"></a>
+                    <h3>{{ product.name }}</h3>
+                    <h4>Цена: {{ product.price }}</h4>
+                  <a href="index.php?c=basket&act=add&id={{ product.id_product}}"><button>Купить</button></a>
+                </div>
+
+              {% endfor %}
+
+            {% endif %}
+          </main>
+        </div>
+
+      {% endblock %}

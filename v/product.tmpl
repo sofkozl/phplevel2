@@ -1,0 +1,14 @@
+{% extends 'index.tmpl' %}
+      
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div>
+  <img src="/v/img/{{ product.image }}" alt="{{ product.name }}">
+  <div>
+    <h2>{{ product.name }}</h2>
+    <p>Цена: {{ product.price }} рублей</p>
+    <a href="index.php?c=basket&act=add&id={{ product.id_product}}"><button>Купить</button></a>
+  </div>
+</div>
+{% endblock %}

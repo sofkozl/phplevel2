@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="v/style.css" />
+    <title>{% block title %}{{ title }}{% endblock %}</title>
+  </head>
+  <body>
+
+      <div id="header">
+        {% include "header.tmpl" %}
+        
+        {% include "menu.tmpl" %}
+      </div>
+
+      {% block content %}
+        {{ content }}      
+      {% endblock %}
+
+      {% include 'footer.tmpl' %}
+
+  </body>
+</html>
